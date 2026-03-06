@@ -15,6 +15,15 @@ Biblioteki: Matplotlib, Seaborn, Pandas, Numpy
 
 Kod: całość z komentarzami do pobrania w osobnym pliku .py
 
+insights:
+--> Nie ma korelacji między ceną produktu, a pozytywnymi opiniami klientów
+--> klienci najlepiej oceniają produkty z kategorii Contour, Moister, CC Cream,
+--> Typ opakowania produktu, a targetowanie produktu według płci nie wskazuje zbyt dużych różnic, poza opakowaniem typu Stick. Dlaczego tak jest? 
+Otóż ten typ opakowania, jest związany z pomadkami, a te z kolei w większości dedykowane są dla kobiet :-)
+--> Wśród najlepiej ocenanych produktów dla osób ze skórą wrażliwą, w top5 znalzały się aż 4 produkty do ust. Dlaczego? Usta (wywyinięta śluzówka) 
+są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierzchniowo. 
+--> Nie ma lidera wśród etycznego produkowania kosmetyków. Każdy z krajów na zbliżoną ilość procentową dla etycznych produktów i wynosi ok 12%. 
+
 Przykładowe wizualizacje i kod:
 
 <img width="1657" height="636" alt="image" src="https://github.com/user-attachments/assets/3c2247e4-b5b6-4cd3-b29e-3c61f6e1553f" />
