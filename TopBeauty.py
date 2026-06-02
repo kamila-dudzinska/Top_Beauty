@@ -1,4 +1,13 @@
 # %%
+"""
+Created on 06.03.2026
+Extended on: 02.06.2026
+
+@author: Kamila Dudzinska
+"""
+
+# %%
+#import modułów
 import pandas as pd
 import os
 
