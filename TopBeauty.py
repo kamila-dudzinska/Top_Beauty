@@ -179,7 +179,8 @@ print(main_ing)
 best = df[df['Skin_Type'] == 'Sensitive']
 
 best_sen = best.sort_values(by='Rating', ascending=False).head(5).reset_index()
-print(best_sen)
+best_sen_chosen = best_sen[['Product_Name', 'Brand', 'Category', 'Rating', 'Price_USD']]
+print(best_sen_chosen)
 
 # %%
 
