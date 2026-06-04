@@ -71,6 +71,25 @@ pos = df[df['Rating']>=4.8]
 price_review = pos['Price_USD'].corr(pos['Rating'])
 print(f'Zależnosc oceny produktu od ceny {price_review:.2f}.')
 
+#dane wejsciowe dla korelacji
+pos = df[df['Rating']>=4.8]
+df_corr = pos[['Price_USD', 'Rating']].corr()
+
+#tworzymy wykres
+plt.figure(figsize=(8, 6))
+
+#moduł seaborn
+sns.heatmap(
+    df_corr,                    # korelacja - dane wejciowe
+    annot=True,                 # wartoci liczbowe wewnątrz kwadracików
+    cmap='YlGnBu',            # paleta kolorów
+    vmin=-1,                    # min wartoć skali kolorów
+    vmax=1                      #maksymalna wartoć skali kolorów
+)
+
+plt.title("Korelacje: ")
+plt.show()
+
 # %%
 # 5. Ile produktów było dedykowanych dla kobiet  i ile dla mężczyzn plus wykres kołowy. 
 
