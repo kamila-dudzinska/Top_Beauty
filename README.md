@@ -49,9 +49,9 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 <img width="1478" height="433" alt="image" src="https://github.com/user-attachments/assets/b10705bd-2b2b-4623-b1a0-2877dda7e838" />
 
 ### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)*
-![kod1] ! [alt_text (kod_1.png)
+![kod1] (https://github.com/kamila-dudzinska/Top_Beauty/blob/Extended/kod_1.png)
 
-![kod1] [alt_text (kod_2.png)
+![kod1] [alt_text] (kod_2.png)
 
 ![kod_extened] 
 ![alt text](image.png)
