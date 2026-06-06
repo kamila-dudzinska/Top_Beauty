@@ -40,6 +40,11 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 - ** --> dodanie nowych wniosków i pytań
 - ** --> przygotowanie pełnenj prezentacji w JupiterNotebook
 
+### Jak uruchomić projekt lokalnie:
+1. Sklonuj repozytorium
+2. Zainstaluj biblioteki: `pip install -r requirements.txt`
+3. Uruchom skrypt: `python TopBeauty.py` lub otwórz `Analiza.ipynb`
+
 ### Przykładowe wizualizacje i kod:
 
 ### 📊 Wersja pierwsza: TopBeauty.py (06.03.2026)
