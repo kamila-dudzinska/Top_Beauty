@@ -18,6 +18,8 @@ Biblioteki: Matplotlib, Seaborn, Pandas, Numpy,
 Kod: całość z komentarzami do pobrania w osobnym pliku .py
 
 📊 Wersja pierwsza: TopBeauty.py (06.03.2026)
+
+
 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)* - wersja poprawiona i rozszerzona o dodatkową analizę - podsumowanie kolejnych szkoleń i nowo nabytych umiejętności. Informacje co zostało zmnienione na dole*
 
 
