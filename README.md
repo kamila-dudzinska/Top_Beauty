@@ -20,7 +20,8 @@ Kod: całość z komentarzami do pobrania w osobnym pliku .py
 ### 📊 Wersja pierwsza: TopBeauty.py (06.03.2026)
 
 
-### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)* - wersja poprawiona i rozszerzona o dodatkową analizę - podsumowanie kolejnych szkoleń i nowo nabytych umiejętności. Informacje co zostało zmnienione na dole*
+### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)* 
+wersja poprawiona i rozszerzona o dodatkową analizę - podsumowanie kolejnych szkoleń i nowo nabytych umiejętności. Informacje co zostało zmnienione na dole*
 
 
 insights:
@@ -48,9 +49,9 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 <img width="1478" height="433" alt="image" src="https://github.com/user-attachments/assets/b10705bd-2b2b-4623-b1a0-2877dda7e838" />
 
 ### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)*
-![kod1] (kod_1.png)
+![kod1] ! [alt_text (kod_1.png)
 
-![kod1] (kod_2.png)
+![kod1] [alt_text (kod_2.png)
 
 ![kod_extened] 
 ![alt text](image.png)
