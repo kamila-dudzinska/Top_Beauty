@@ -17,10 +17,10 @@ Biblioteki: Matplotlib, Seaborn, Pandas, Numpy,
 
 Kod: całość z komentarzami do pobrania w osobnym pliku .py
 
-📊 Wersja pierwsza: TopBeauty.py (06.03.2026)
+### 📊 Wersja pierwsza: TopBeauty.py (06.03.2026)
 
 
-🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)* - wersja poprawiona i rozszerzona o dodatkową analizę - podsumowanie kolejnych szkoleń i nowo nabytych umiejętności. Informacje co zostało zmnienione na dole*
+### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)* - wersja poprawiona i rozszerzona o dodatkową analizę - podsumowanie kolejnych szkoleń i nowo nabytych umiejętności. Informacje co zostało zmnienione na dole*
 
 
 insights:
@@ -32,18 +32,25 @@ Otóż ten typ opakowania, jest związany z pomadkami, a te z kolei w większoś
 są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierzchniowo. 
 - ** --> Nie ma lidera wśród etycznego produkowania kosmetyków. Każdy z krajów na zbliżoną ilość procentową dla etycznych produktów i wynosi ok 12%. 
 
-Wersja rozszerzona:
+
+### Wersja rozszerzona:
 - ** --> wzbogacenie o dodatkowe wykresy - stacked bar chart, heatmap
 - ** --> ujednolicenie szaty kolorystycznej o własną paletę barw
 - ** --> dodanie nowych wniosków i pytań
 - ** --> przygotowanie pełnenj prezentacji w JupiterNotebook
 
-Przykładowe wizualizacje i kod:
+### Przykładowe wizualizacje i kod:
+
+### 📊 Wersja pierwsza: TopBeauty.py (06.03.2026)
 
 <img width="1657" height="636" alt="image" src="https://github.com/user-attachments/assets/3c2247e4-b5b6-4cd3-b29e-3c61f6e1553f" />
 
 <img width="1478" height="433" alt="image" src="https://github.com/user-attachments/assets/b10705bd-2b2b-4623-b1a0-2877dda7e838" />
 
-Wersja rozszerzona:
+### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)*
+![kod1] (kod_1.png)
+
+![kod1] (kod_2.png)
+
 ![kod_extened] 
 ![alt text](image.png)
