@@ -1,4 +1,4 @@
-# 💄 Top_Beauty
+# 💄🌸 Top_Beauty
 Data analysis of cosmetic products
 
 Source: Kaggle 
@@ -59,7 +59,7 @@ Sample visualizations and code: -->
 
 
 ----------------------------------POLISH VERSION -----------------------------------------------
-# 💄 Top_Beauty
+# 💄🌸 Top_Beauty
 Analiza danych dotyczących produktów kosmetycznych
 
 Źródło: Kaggle 
