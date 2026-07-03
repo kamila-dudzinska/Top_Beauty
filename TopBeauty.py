@@ -69,14 +69,60 @@ plt.tight_layout()
 plt.show()
 
 # %%
-# 3. Top najdroższych produktów:
+# 3. # średnia cena i mediana
+avg_price = df['Price_USD'].mean()  
+median_price = df['Price_USD'].median()
+print(f"Średnia cena produktu to {avg_price.round(2)}.")
+print(f"Cena, którą zobaczymy na sklepowej półce najczęściej to {median_price.round(2)}.")
 
-expensive_cat = df.groupby('Product_Name')['Price_USD'].max().head(5)
-print(expensive_cat)
+#srednia cena produktów w danej kategorii:
+#definiowanie zmiennych
+cena = df['Price_USD']
+price_interval = [0, 30, 60, 90, 120, 160]
+price_int_names = ['Bardzo tanie\n(0-30 USD)', 
+                   'Tanie\n(30-60 USD)',
+                   'Średnie\n(60-90 USD)',
+                   'Drogie\n (90-120 USD)',
+                   'Ekskluzywne\n (pow. 120 USD)']
+
+plt.figure(figsize=(16, 12))
+fig, ax = plt.subplots()
+
+# histogram - przediały cenowe
+ax.hist(cena, 
+        alpha=0.7, 
+        label="Cena produktu", 
+        color='pink', 
+        edgecolor= 'black',
+        bins=price_interval)
+
+#środki przedziałów:
+middle_int = [(price_interval[i] + price_interval[i+1])/2 for i in range(len(price_interval)-1)]
+
+# nazwy osi x
+x_names = ['Bardzo tanie\n(0-30 USD)', 
+                   'Tanie\n(30-60 USD)',
+                   'Średnie\n(60-90 USD)',
+                   'Drogie\n (90-120 USD)',
+                   'Ekskluzywne\n (pow. 120 USD)']
+
+ax.set_ylabel("Cena produktu")
+ax.set_title("Rozkład cenowy produktów")
+plt.xticks(middle_int, price_int_names)
+plt.grid(axis = 'x',
+        linestyle = '--',
+        alpha=0.5 )
+plt.tight_layout()
+plt.show()
 
 # %%
-# 4. zależnosc i korelacja między ceną produktu, 
-#    a pozytywna opinią (dla celow badawczych za pozytywną  opinię dalismy rating => 4.8)
+#4. Top 5 produktów - Identyfikacja segmentu premium!
+expensive_cat = df.groupby('Product_Name')['Price_USD'].max().head(5)
+print(expensive_cat)
+            
+            
+            , 
+# 5. Czy cena wpływa na pozytywne opinie? (rating ≥ 4.8)?
 
 pos = df[df['Rating']>=4.8]
 
@@ -122,107 +168,8 @@ plt.title("Korelacje: ")
 plt.show()
 
 # %%
-# 5. Ile produktów było dedykowanych dla kobiet  i ile dla mężczyzn plus wykres kołowy. 
-
-gender_target = df.groupby('Gender_Target')['Gender_Target'].count().plot(kind='pie',
-                                                subplots=True,
-                                                autopct='%1.1f%%'
-                                                )
-
-# %%
-# 6. Które produkty są najlepiej oceniane?
-
-#sprawdzamy średnią ocenę oraz liczbę recenzji
-top_products = df.groupby(['Product_Name', 'Brand'])['Rating'].agg(['mean', 'count'])
-
-#filtrowanie, zostawiamy produkty mające wiecej niż 5 recenzji
-stars = top_products[top_products['count']>5]
-
-#sortowanie wyników po najwyżeszj średniej ocen
-print(stars.sort_values(by='mean', ascending=False).head(5))
-
-
-
-
-# %%
-# 7. Srednia cena poroduktów:
-
-# średnia cena i mediana
-avg_price = df['Price_USD'].mean()  
-median_price = df['Price_USD'].median()
-print(f"Średnia cena produktu to {avg_price.round(2)}.")
-print(f"Cena, którą zobaczymy na sklepowej półce najczęściej to {median_price.round(2)}.")
-
-#histogramm - podział produktów ze względu na cenę
-#definiowanie zmiennych
-cena = df['Price_USD']
-price_interval = [0, 30, 60, 90, 120, 160]
-price_int_names = ['Bardzo tanie\n(0-30 USD)', 
-                   'Tanie\n(30-60 USD)',
-                   'Średnie\n(60-90 USD)',
-                   'Drogie\n (90-120 USD)',
-                   'Ekskluzywne\n (pow. 120 USD)']
-
-plt.figure(figsize=(16, 12))
-fig, ax = plt.subplots()
-
-# histogram - przediały cenowe
-ax.hist(cena, 
-        alpha=0.7, 
-        label="Cena produktu", 
-        color='pink', 
-        edgecolor= 'black',
-        bins=price_interval)
-
-#środki przedziałów:
-middle_int = [(price_interval[i] + price_interval[i+1])/2 for i in range(len(price_interval)-1)]
-
-# nazwy osi x
-x_names = ['Bardzo tanie\n(0-30 USD)', 
-                   'Tanie\n(30-60 USD)',
-                   'Średnie\n(60-90 USD)',
-                   'Drogie\n (90-120 USD)',
-                   'Ekskluzywne\n (pow. 120 USD)']
-
-ax.set_ylabel("Cena produktu")
-ax.set_title("Rozkład cenowy produktów")
-plt.xticks(middle_int, price_int_names)
-plt.grid(axis = 'x',
-        linestyle = '--',
-        alpha=0.5 )
-plt.tight_layout()
-plt.show()
-
-
-
-# %%
-# 7. pivot table z dwoma funkjcami agregującymmi 
-pd.pivot_table(data=df,
-               index='Product_Name',
-               columns='Rating',
-               aggfunc={'Rating':'sum'})
-
-# %%
-# 8. typ opakowania a płeć (róznice)
-
-pack_gen = df.groupby(['Packaging_Type', 'Gender_Target']).size().reset_index(name='Count')
-
-# pivotka
-pivot_df = pack_gen.pivot(index='Packaging_Type', columns='Gender_Target', values='Count').fillna(0)
-
-# różnica między płciami - tabelka
-pivot_df['Max_Diff'] = (pivot_df.max(axis=1) - pivot_df.min(axis=1)).astype(int)
-print(pivot_df)
-
-#max. różnica
-md = pivot_df['Max_Diff'].max()
-op = pivot_df['Max_Diff'].idxmax()
-
-#z czego wynika największa różnica?
-print(f'Największa różnica to {md} na opakowaniu typu: {op} ')
-
-
-#wykres pokazujący ofertę rynkową deydkowaną dla koniet, meżczyzn oraz 'unisex'
+# 6. Produkty dla kobiet vs mężczyzn vs unisex - czy mamy balans?. 
+# wykres kołowy (pie chart)
 plt.figure(figsize=(8,6))
 
 sns.set_palette(sns.color_palette(colors))
@@ -238,11 +185,20 @@ plt.title('Grupy odbiorców produktów')
 plt.tight_layout()
 plt.show()
 
-
 # %%
-# 9. kraj pochodzenia, a cruelty free
+# 6. Które produkty są najlepiej oceniane?
 
-ountry_c_free = df.groupby(['Cruelty_Free' , 'Country_of_Origin']).count()
+#sprawdzamy średnią ocenę oraz liczbę recenzji
+top_products = df.groupby(['Product_Name', 'Brand'])['Rating'].agg(['mean', 'count'])
+
+#filtrowanie, zostawiamy produkty mające wiecej niż 5 recenzji
+stars = top_products[top_products['count']>5]
+
+#sortowanie wyników po najwyżeszj średniej ocen
+print(stars.sort_values(by='mean', ascending=False).head(5))
+
+# 8. Kraj pochodzenia a etyczność (cruelty-free)
+country_c_free = df.groupby(['Cruelty_Free' , 'Country_of_Origin']).count()
 
 # pivotka
 pivot_ccf = df.pivot_table(index='Cruelty_Free', 
@@ -285,14 +241,13 @@ plt.legend(title="Creulty Free",
            bbox_to_anchor=(1.3, 0.5))
 plt.show()
 
-# %%
-# 10. Główny składnik dla danego typu skóry
+
+#9. Główny składnik a typ skóry.
 
 main_ing = df.groupby(['Skin_Type'])['Main_Ingredient'].agg(lambda x: x.value_counts().idxmax()).reset_index(name='Most_Common_Ingredient')
 print(main_ing)
 
-# %%
-# najlepszy produkt dla skóry wrażliwej
+# 10. Znajdźmy najlepszy produkt dla skóry wrażliwej.
 
 best = df[df['Skin_Type'] == 'Sensitive']
 
@@ -300,8 +255,10 @@ best_sen = best.sort_values(by='Rating', ascending=False).head(5).reset_index()
 best_sen_chosen = best_sen[['Product_Name', 'Brand', 'Category', 'Rating', 'Price_USD']]
 print(best_sen_chosen)
 
-# %%
-# skumulowany wykres słupkowy - najczęsciej stosowane składniki aktywne ze względu na typ skóry
+# 11. Jakie są główne składniki aktywne dydykowane dla różnych typów cery?
+import matplotlib.pyplot as plt
+import pandas as pd
+
 # Stacked Bar Chart - skumulowany wykres słupkowy
 
 # przygotowanie danych
@@ -326,7 +283,6 @@ kolory={'Combination':'#B7BDF7',
         'Normal': '#C7EABB',
         'Oily' :'#FFEABB',
         'Sensitive': '#FAACBF'}
-
 # rysowanie wykresu
 plt.style.use("default")
 plt.figure(figsize=(11, 7))
@@ -357,7 +313,6 @@ plt.gca().bar_label(
     color="white",
 )
 
-
 # oś Y typy skóry
 plt.yticks(df_top3_skin.index, df_top3_skin["Skin_Type"])
 
@@ -375,12 +330,18 @@ plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.show()
 
+#histogramm - podział produktów ze względu na cenę
+#definiowanie zmiennych
+cena = df['Price_USD']
+price_interval = [0, 30, 60, 90, 120, 160]
+price_int_names = ['Bardzo tanie\n(0-30 USD)', 
+                   'Tanie\n(30-60 USD)',
+                   'Średnie\n(60-90 USD)',
+                   'Drogie\n (90-120 USD)',
+                   'Ekskluzywne\n (pow. 120 USD)']
 
-
-
-
-
-
+plt.figure(figsize=(16, 12))
+fig, ax = plt.subplots()
 
 
 
