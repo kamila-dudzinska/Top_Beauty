@@ -1,8 +1,6 @@
 # 💄🌸 Top_Beauty
 Data analysis of cosmetic products
 
---------------------------------------------ENGLISH VERSION --------------------------------------------------------
-
 Source: Kaggle 
 
 Link: https://www.kaggle.com/datasets/waqi786/most-used-beauty-cosmetics-products-in-the-world
