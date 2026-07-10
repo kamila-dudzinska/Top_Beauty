@@ -51,10 +51,14 @@ Sample visualizations and code: -->
 
 <img width="1478" height="433" alt="image" src="https://github.com/user-attachments/assets/b10705bd-2b2b-4623-b1a0-2877dda7e838" />
 
-### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)*
+### 🔍🔍 Extended version: TopBeauty.py (06.06.2026)*
 ![kod1](kod_1.png?v=1)
 
+### Kontakt:  
 
+[![Kamila Dudzińska](https://img.shields.io/badge/Kamila%20Dudzińska-ff69b4?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
+[![Email](https://img.shields.io/badge/Email-555555?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge)](https://www.linkedin.com/flagship-web/in/kamila-dudzi%C5%84ska-856bb31b8/)
 
 
 
@@ -119,14 +123,9 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 
 
 <hr style="border:3px solid #AEC6CF;">
-### 📧 Kontakt --> Kamila Dudzińska
+### Kontakt:  
 
+[![Kamila Dudzińska](https://img.shields.io/badge/Kamila%20Dudzińska-ff69b4?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
+[![Email](https://img.shields.io/badge/Email-555555?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge)](https://www.linkedin.com/flagship-web/in/kamila-dudzi%C5%84ska-856bb31b8/)
 
-📧 kamila.dudzinska@onet.pl  
-
-🌐 [LinkedIn](https://www.linkedin.com/flagship-web/in/kamila-dudzi%C5%84ska-856bb31b8/)
-
-![kod1](kod_2.png?v=1)
-
-![kod_extened] 
-![alt text](image.png)
