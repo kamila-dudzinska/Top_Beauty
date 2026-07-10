@@ -62,7 +62,7 @@ Sample visualizations and code: -->
 
 
 
-----------------------------------POLISH VERSION -----------------------------------------------
+--------------------------------------------POLISH VERSION --------------------------------------------------------
 # 💄🌸 Top_Beauty
 Analiza danych dotyczących produktów kosmetycznych
 
