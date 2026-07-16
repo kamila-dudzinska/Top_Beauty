@@ -54,7 +54,7 @@ Sample visualizations and code: -->
 ### 🔍🔍 Extended version: TopBeauty.py (06.06.2026)*
 ![kod1](kod_1.png?v=1)
 
-### Contakt:  
+### Contact:  
 
 [![Kamila Dudzińska](https://img.shields.io/badge/Kamila%20Dudzińska-ff69b4?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
 [![Email](https://img.shields.io/badge/Email-555555?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
