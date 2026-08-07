@@ -125,12 +125,6 @@ print(expensive_cat)
             , 
 # 5. Czy cena wpływa na pozytywne opinie? (rating ≥ 4.8)?
 
-pos = df[df['Rating']>=4.8]
-
-price_review = pos['Price_USD'].corr(pos['Rating'])
-print(f'Zależnosc oceny produktu od ceny {price_review:.3f}.')
-
-#tworzymy wykres
 #dane wejsciowe dla korelacji
 pos = df[df['Rating']>=4.8]
 df_corr = pos[['Price_USD', 'Rating']].corr()
@@ -146,7 +140,7 @@ sns.heatmap(
     vmax=1                      #maksymalna wartoć skali kolorów
 )
 
-plt.title("Korelacje: ")
+plt.title("Korelacja pomiędzy ceną produktu, a jego oceną: ")
 plt.show()
 
 #dane wejsciowe dla korelacji
@@ -171,7 +165,7 @@ plt.show()
 # %%
 # 6. Produkty dla kobiet vs mężczyzn vs unisex - czy mamy balans?. 
 # wykres kołowy (pie chart)
-plt.figure(figsize=(8,6))
+plt.figure(figsize=(6,4))
 
 sns.set_palette(sns.color_palette(colors))
 
@@ -179,7 +173,6 @@ gender_target = df.groupby('Gender_Target')['Gender_Target'].count().plot(kind='
                                                 figsize=(10,6),
                                                 subplots=True,
                                                 autopct='%1.1f%%',
-                                                #cmap='PuRd'
                                                 )
 
 plt.title('Grupy odbiorców produktów')
