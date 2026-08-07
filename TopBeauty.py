@@ -41,6 +41,7 @@ top_cat = df.groupby('Category')['Rating'].mean().sort_values(ascending=False).h
 df_ct = top_cat.to_frame()
 print(top_cat)
 
+
 # 2. Wykres dla top5 kategorii:
 
 top_cat = df.groupby('Category')['Rating'].mean().sort_values(ascending=False).head(5)
@@ -63,7 +64,7 @@ sns.barplot(data=df_ct,
 plt.xticks(rotation=45)
 plt.title('Najlepiej oceniane kategorie')
 plt.xlabel('Kategoria', fontsize=12)
-plt.ylabel('Rating', fontsize=12)
+plt.ylabel('Ocena', fontsize=12)
 plt.tight_layout()
 
 plt.show()
@@ -159,7 +160,7 @@ plt.figure(figsize=(8, 6))
 sns.heatmap(
     df_corr,                    # korelacja - dane wejciowe
     annot=True,                 # wartoci liczbowe wewnątrz kwadracików
-    cmap='YlGnBu',            # paleta kolorów
+    cmap='YlGnBu',              # paleta kolorów
     vmin=-1,                    # min wartoć skali kolorów
     vmax=1                      #maksymalna wartoć skali kolorów
 )
@@ -186,7 +187,7 @@ plt.tight_layout()
 plt.show()
 
 # %%
-# 6. Które produkty są najlepiej oceniane?
+# 6. Które produkty są najlepiej oceniane? Pod uwagę bierzemy produkty mające minimum 5 recenzji.
 
 #sprawdzamy średnią ocenę oraz liczbę recenzji
 top_products = df.groupby(['Product_Name', 'Brand'])['Rating'].agg(['mean', 'count'])
@@ -278,11 +279,11 @@ df_top3_skin = df_top3_skin.sort_values(
                                         ).reset_index(drop=True)
 
 # moja paleta kolorystyczna - słownik
-kolory={'Combination':'#B7BDF7', 
-        'Dry':'#FE81D4',
-        'Normal': '#C7EABB',
-        'Oily' :'#FFEABB',
-        'Sensitive': '#FAACBF'}
+kolory={'Mieszana':'#B7BDF7', 
+        'Sucha':'#FE81D4',
+        'Normalna': '#C7EABB',
+        'Tłusta' :'#FFEABB',
+        'Wrażliwa': '#FAACBF'}
 # rysowanie wykresu
 plt.style.use("default")
 plt.figure(figsize=(11, 7))
@@ -329,19 +330,6 @@ plt.gca().invert_yaxis()
 
 plt.tight_layout()
 plt.show()
-
-#histogramm - podział produktów ze względu na cenę
-#definiowanie zmiennych
-cena = df['Price_USD']
-price_interval = [0, 30, 60, 90, 120, 160]
-price_int_names = ['Bardzo tanie\n(0-30 USD)', 
-                   'Tanie\n(30-60 USD)',
-                   'Średnie\n(60-90 USD)',
-                   'Drogie\n (90-120 USD)',
-                   'Ekskluzywne\n (pow. 120 USD)']
-
-plt.figure(figsize=(16, 12))
-fig, ax = plt.subplots()
 
 
 
