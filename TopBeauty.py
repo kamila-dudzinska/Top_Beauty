@@ -5,6 +5,7 @@ Extended on: 06.06.2026
 
 @author: Kamila Dudzinska
 Dataset: https://www.kaggle.com/datasets/waqi786/most-used-beauty-cosmetics-products-in-the-world
+Project created in order to train data analysis in python-pandas, matplotlib and seaborn. 
 """
 
 # %%
@@ -19,7 +20,6 @@ from custom_styles import colors
 df = pd.read_csv("top_beauty.csv")
 df.head()
 
-# %%
 # spr podstawowe staystyki o Data Frame: jakiego typu są to dane?
 # czy są nulle? Ile mamy kolumn i jakie mają nazwy?
 
@@ -34,19 +34,10 @@ top5 = df.groupby('Brand')['Rating'].mean().sort_values(ascending=False)
 print(top5.head(5))
 
 
-# %%
 # 2.W jakiej kategorii produkty oceniane są najlepiej?
 
 top_cat = df.groupby('Category')['Rating'].mean().sort_values(ascending=False).head(5)
 df_ct = top_cat.to_frame()
-print(top_cat)
-
-
-# 2. Wykres dla top5 kategorii:
-
-top_cat = df.groupby('Category')['Rating'].mean().sort_values(ascending=False).head(5)
-df_ct = top_cat.to_frame()
-print(top_cat)
 
 # 2. Wykres dla top5 kategorii:
 
@@ -58,25 +49,22 @@ plt.figure(figsize=(8,5))
 sns.barplot(data=df_ct,
             x='Category',
             y='Rating',
-            #palette='viridis',
             errorbar=None,
             alpha=0.7)
 plt.xticks(rotation=45)
-plt.title('Najlepiej oceniane kategorie')
-plt.xlabel('Kategoria', fontsize=12)
-plt.ylabel('Ocena', fontsize=12)
+plt.title('Najlepiej oceniane kategorie: ')
+plt.xlabel('Kategoria', fontsize=12, labelpad =15)
+plt.ylabel('Ocena', fontsize=12, labelpad =15)
 plt.tight_layout()
 
 plt.show()
 
-# %%
-# 3. # średnia cena i mediana
-avg_price = df['Price_USD'].mean()  
-median_price = df['Price_USD'].median()
-print(f"Średnia cena produktu to {avg_price.round(2)}.")
-print(f"Cena, którą zobaczymy na sklepowej półce najczęściej to {median_price.round(2)}.")
 
-#srednia cena produktów w danej kategorii:
+# 3. # średnia cena i mediana
+# średnia cena i mediana
+avg_price = df['Price_USD'].mean()  
+print(f"Cena, którą zobaczymy na sklepowej półce najczęściej to {avg_price.round(2)}.")
+
 #definiowanie zmiennych
 cena = df['Price_USD']
 price_interval = [0, 30, 60, 90, 120, 160]
@@ -116,53 +104,51 @@ plt.grid(axis = 'x',
 plt.tight_layout()
 plt.show()
 
-# %%
+
 #4. Top 5 produktów - Identyfikacja segmentu premium!
-expensive_cat = df.groupby('Product_Name')['Price_USD'].max().head(5)
-print(expensive_cat)
-            
-            
+
+#przeliczenie ceny na 1ml
+df['Product_Size'] = df['Product_Size'].str.replace('ml', '').astype(int)
+
+# grupowanie i pobranie maksymalnej ceny
+expensive_product = (
+    df.groupby('Product_Name', 
+               as_index=False)['Price_USD']
+      .max()
+      .rename(columns={'Product_Name': 'Nazwa produktu', 
+                       'Price_USD': 'Cena'}).sort_values(by='Cena', ascending=False)
+      .head(5)
+)
+
+
+expensive_product['cena_za_ml'] = df['Price_USD']/ df["Product_Size"]
+
+print(expensive_product.sort_values(by='cena_za_ml', ascending=False))          
             , 
-# 5. Czy cena wpływa na pozytywne opinie? (rating ≥ 4.8)?
+#5. Czy jest zależność między ceną, a oceną produktu?
+
+price_review = df['Price_USD'].corr(df['Rating'])
+print(f'Zależność oceny produktu od ceny {price_review:.3f}. co oznacza, ocena klientów nie jest zależna od ceny produktu.')
+print('Im wyższa cena, tym klienci minimalnie gorzej oceniają produkt.')
 
 #dane wejsciowe dla korelacji
-pos = df[df['Rating']>=4.8]
-df_corr = pos[['Price_USD', 'Rating']].corr()
+df_corr = df[['Price_USD', 'Rating']].corr()
 
 #tworzymy wykres
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(5, 3))
 
 #moduł seaborn
 sns.heatmap(
     df_corr,                    # korelacja - dane wejciowe
     annot=True,                 # wartoci liczbowe wewnątrz kwadracików
     vmin=-1,                    # min wartoć skali kolorów
-    vmax=1                      #maksymalna wartoć skali kolorów
+    vmax=1                      # maksymalna wartoć skali kolorów
 )
 
 plt.title("Korelacja pomiędzy ceną produktu, a jego oceną: ")
 plt.show()
 
-#dane wejsciowe dla korelacji
-pos = df[df['Rating']>=4.8]
-df_corr = pos[['Price_USD', 'Rating']].corr()
 
-#tworzymy wykres
-plt.figure(figsize=(8, 6))
-
-#moduł seaborn
-sns.heatmap(
-    df_corr,                    # korelacja - dane wejciowe
-    annot=True,                 # wartoci liczbowe wewnątrz kwadracików
-    cmap='YlGnBu',              # paleta kolorów
-    vmin=-1,                    # min wartoć skali kolorów
-    vmax=1                      #maksymalna wartoć skali kolorów
-)
-
-plt.title("Korelacje: ")
-plt.show()
-
-# %%
 # 6. Produkty dla kobiet vs mężczyzn vs unisex - czy mamy balans?. 
 # wykres kołowy (pie chart)
 plt.figure(figsize=(6,4))
@@ -179,75 +165,128 @@ plt.title('Grupy odbiorców produktów')
 plt.tight_layout()
 plt.show()
 
-# %%
-# 6. Które produkty są najlepiej oceniane? Pod uwagę bierzemy produkty mające minimum 5 recenzji.
 
-#sprawdzamy średnią ocenę oraz liczbę recenzji
-top_products = df.groupby(['Product_Name', 'Brand'])['Rating'].agg(['mean', 'count'])
+# 7. Które produkty są najlepiej oceniane? Pod uwagę bierzemy produkty mające minimum 5 recenzji.
 
-#filtrowanie, zostawiamy produkty mające wiecej niż 5 recenzji
-stars = top_products[top_products['count']>5]
+# grupowanie danych po nazwie produktu i marce
+wynik = (
+    df.groupby(['Product_Name', 'Brand'])
+      .agg({'Rating':'mean', 'Number_of_Reviews':'sum'})
+      .reset_index() 
+)
 
-#sortowanie wyników po najwyżeszj średniej ocen
-print(stars.sort_values(by='mean', ascending=False).head(5))
+# zmiana nazw kolumn
+wynik.columns = ['Nazwa produktu', 'Marka', 'średni wynik', 'liczba recenzji']
 
-# 8. Kraj pochodzenia a etyczność (cruelty-free)
-country_c_free = df.groupby(['Cruelty_Free' , 'Country_of_Origin']).count()
+# filtrowanie produktów z więcej niż 5 recenzjami
+wynik = wynik[wynik['liczba recenzji'] > 5]
 
-# pivotka
-pivot_ccf = df.pivot_table(index='Cruelty_Free', 
-                     columns='Country_of_Origin',
-                     aggfunc='size',
-                     fill_value=0)
+# zaokrąglenie średniego wyniku do 2 miejsc po przecinku
+wynik['średni wynik'] = wynik['średni wynik'].round(2)
+
+# sortowanie po najwyższym średnim wyniku
+wynik = wynik.sort_values(by='średni wynik', ascending=False)
+
+#usuwane indexów
+wynik = wynik.reset_index(drop=True)
+
+print(wynik.head())
+
+# Kraj pochodzenia, a Cruelty-Free?
+
+map_kraje = {
+    'USA': 'Stany Zjednoczone',
+    'France': 'Francja',
+    'Germany': 'Niemcy',
+    'Poland': 'Polska',
+    'Italy': 'Włochy',
+    'UK': 'Wielka Brytania',
+    'South Korea': 'Korea Południowa',
+    'Australia': 'Australia',
+    'Japan': 'Japonia'
+}
+
+df['Country_of_Origin'] = df['Country_of_Origin'].replace(map_kraje)
+
+country_c_free = (df.groupby('Country_of_Origin')
+                             ['Cruelty_Free']
+                             .mean()
+                             .mul(100)
+                             .round(1)
+                             .sort_values(ascending= False))
 
 print(df.columns.tolist())
-
-#    1 - ile wierszy  # 2 - ile kolumn   #sharey - o y jest dzielona
 
 country_counts = df.groupby('Country_of_Origin').size()
 
 sns.set_palette(sns.color_palette(colors))
 
-fig, ax = plt.subplots(1, 2, 
+fig, ax = plt.subplots(
                        figsize=(10, 4),
                        sharey=True)  
 fig.tight_layout(rect=[0, 0, 0.7, 0.9])
 
-# wykres 1
-pivot_ccf.groupby('Cruelty_Free').size().plot(ax=ax[0], 
-                                              kind='pie',
-                                              autopct='%1.1f%%',
-                                              color='pink')
-                                              #cmap='viridis')  
-# wykres 2
-country_counts.plot(ax=ax[1], 
+country_counts.plot(
                     kind='pie',
                     autopct='%1.1f%%',
                     color='pink'
                     )
-# legenda
-ax[1].legend('Cruelty Free')
 
-plt.legend(title="Creulty Free",
-           frameon=True,
-           shadow=True,
-           loc="center left",
-           bbox_to_anchor=(1.3, 0.5))
 plt.show()
-
 
 #9. Główny składnik a typ skóry.
 
-main_ing = df.groupby(['Skin_Type'])['Main_Ingredient'].agg(lambda x: x.value_counts().idxmax()).reset_index(name='Most_Common_Ingredient')
+main_ing = (
+    df.groupby(['Skin_Type'])['Main_Ingredient']
+      .agg(lambda x: x.value_counts().idxmax())
+      .reset_index(name='Most_Common_Ingredient')
+)
+
+# zmiana nazw kolumn
+main_ing = main_ing.rename(columns={
+    'Skin_Type': 'Rodzaj skóry',
+    'Most_Common_Ingredient': 'Główny składnik'
+})
+
+# mapa tłumaczeń typów skóry
+map_skora = {
+    'Oily': 'Tłusta',
+    'Dry': 'Sucha',
+    'Combination': 'Mieszana',
+    'Sensitive': 'Wrażliwa',
+    'Normal': 'Normalna'
+}
+
+# podmiana nazw w kolumnie
+main_ing['Rodzaj skóry'] = main_ing['Rodzaj skóry'].replace(map_skora)
 print(main_ing)
 
 # 10. Znajdźmy najlepszy produkt dla skóry wrażliwej.
 
-best = df[df['Skin_Type'] == 'Sensitive']
+main_ing = (
+    df.groupby(['Skin_Type'])['Main_Ingredient']
+      .agg(lambda x: x.value_counts().idxmax())
+      .reset_index(name='Most_Common_Ingredient')
+)
 
-best_sen = best.sort_values(by='Rating', ascending=False).head(5).reset_index()
-best_sen_chosen = best_sen[['Product_Name', 'Brand', 'Category', 'Rating', 'Price_USD']]
-print(best_sen_chosen)
+# zmiana nazw kolumn
+main_ing = main_ing.rename(columns={
+    'Skin_Type': 'Rodzaj skóry',
+    'Most_Common_Ingredient': 'Główny składnik'
+})
+
+# mapa tłumaczeń typów skóry
+map_skora = {
+    'Oily': 'Tłusta',
+    'Dry': 'Sucha',
+    'Combination': 'Mieszana',
+    'Sensitive': 'Wrażliwa',
+    'Normal': 'Normalna'
+}
+
+# podmiana nazw w kolumnie
+main_ing['Rodzaj skóry'] = main_ing['Rodzaj skóry'].replace(map_skora)
+print(main_ing)
 
 # 11. Jakie są główne składniki aktywne dydykowane dla różnych typów cery?
 import matplotlib.pyplot as plt
@@ -271,12 +310,24 @@ df_top3_skin = df_top3_skin.sort_values(
                                         ascending=[True, False]
                                         ).reset_index(drop=True)
 
+# mapa tłumaczeń typów skóry
+map_skora = {
+    'Oily': 'Tłusta',
+    'Dry': 'Sucha',
+    'Combination': 'Mieszana',
+    'Sensitive': 'Wrażliwa',
+    'Normal': 'Normalna'
+}
+# podmiana nazw w kolumnie
+df_top3_skin['Skin_Type'] = df_top3_skin['Skin_Type'].replace(map_skora)
+
 # moja paleta kolorystyczna - słownik
 kolory={'Mieszana':'#B7BDF7', 
         'Sucha':'#FE81D4',
         'Normalna': '#C7EABB',
         'Tłusta' :'#FFEABB',
         'Wrażliwa': '#FAACBF'}
+
 # rysowanie wykresu
 plt.style.use("default")
 plt.figure(figsize=(11, 7))
@@ -314,20 +365,15 @@ plt.yticks(df_top3_skin.index, df_top3_skin["Skin_Type"])
 plt.title("Najczęściej używane składniki aktywne ze względu na typ cery",
           fontsize=13,
           weight="bold",
-          pad=15)
-plt.xlabel("Liczba wystąpień danego składnika")
-plt.ylabel("Typ skóry")
+          pad=16)
+plt.xlabel("Liczba wystąpień danego składnika", labelpad=15)
+plt.ylabel("Typ skóry", labelpad=15)
 
 # odwrócenie osi Y
 plt.gca().invert_yaxis()
 
 plt.tight_layout()
 plt.show()
-
-
-
-
-
 
 
 
