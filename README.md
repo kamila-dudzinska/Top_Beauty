@@ -52,7 +52,15 @@ Sample visualizations and code: -->
 <img width="1478" height="433" alt="image" src="https://github.com/user-attachments/assets/b10705bd-2b2b-4623-b1a0-2877dda7e838" />
 
 ### 🔍🔍 Extended version: TopBeauty.py (06.06.2026)*
-![kod1](kod_1.png?v=1)
+![Code 1](images/code1.png)
+
+![Code 2](images/code2.png)
+
+![Histogram](images/histogram.png)
+
+![Stacked bar chart](images/stacked_bar_chart.png)
+
+![Correlation](images/korelacja.png)
 
 ### Contact:  
 
@@ -119,7 +127,15 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 <img width="1478" height="433" alt="image" src="https://github.com/user-attachments/assets/b10705bd-2b2b-4623-b1a0-2877dda7e838" />
 
 ### 🔍🔍 Wersja rozszerzona: TopBeauty.py (06.06.2026)*
-![kod1](kod_1.png?v=1)
+![Fragmenty Koduu 1](images/code1.png)
+
+![Fragmenty kodu 2](images/code2.png)
+
+![Histogram](images/histogram.png)
+
+![Wykres słupkowy grupowany](images/stacked_bar_chart.png)
+
+![Korelcja](images/korelacja.png)
 
 
 <hr style="border:3px solid #AEC6CF;">
