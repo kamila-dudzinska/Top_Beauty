@@ -1,5 +1,5 @@
 pandas
 matplotlib
 seaborn
-seaborn
-numpy
+# jinja2 - potrzebne do stylowania tabel w notebooku (df.style)
+jinja2
