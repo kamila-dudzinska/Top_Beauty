@@ -128,7 +128,7 @@ Wspólna paleta barw i styl.
 
 ### Insights (wnioski):
 - ** Nie ma korelacji między ceną produktu, a pozytywnymi opiniami klientów
-- ** klienci najlepiej oceniają produkty z kategorii Contour, Moister, CC Cream,
+- ** klienci najlepiej oceniają produkty z kategorii Contour, Moisturizer, CC Cream,
 - ** Typ opakowania produktu, a targetowanie produktu według płci nie wskazuje zbyt dużych różnic, poza opakowaniem typu Stick. Dlaczego tak jest? 
 Otóż ten typ opakowania, jest związany z pomadkami, a te z kolei w większości dedykowane są dla kobiet :-)
 -** Wśród najlepiej ocenianych produktów dla osób ze skórą wrażliwą, w top5 znalazły się aż 4 produkty do ust. Dlaczego? Usta (wywinięta śluzówka) 
@@ -137,7 +137,7 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 
 
 ##  ⚠️ Uwaga o danych:
-** --> Zbiór z Kaggle okazał się bardzo specyficzny (dane mockowe): ceny i oceny są równomiernie rozłożone, a nazwy produktów często nie odpowiadają przypisanym kategoriom (na przykład „Ultra Face Mask” znajduje się w kategorii Blush). Róznice między grupami są małe, dlatego uzyskane wnioski mają wartość głównie w kontekście ćwiczenia i nauki procesu analitycznego, a nie jako rzeczywiste konkluzje biznesowe. Zauważyłam to dopiero podczas pisania notatnika Jupyter Notebook, ale zdecydowałam się dokończyć projekt jako studium przypadku do celów edukacyjnych.
+Zbiór z Kaggle okazał się bardzo specyficzny (dane mockowe): ceny i oceny są równomiernie rozłożone, a nazwy produktów często nie odpowiadają przypisanym kategoriom (na przykład „Ultra Face Mask” znajduje się w kategorii Blush). Różnice między grupami są małe, dlatego uzyskane wnioski mają wartość głównie w kontekście ćwiczenia i nauki procesu analitycznego, a nie jako rzeczywiste konkluzje biznesowe. Zauważyłam to dopiero podczas pisania notatnika Jupyter Notebook, ale zdecydowałam się dokończyć projekt jako studium przypadku do celów edukacyjnych.
 
 
 ### 🧩 Wersja rozszerzona:
@@ -147,7 +147,7 @@ są mniej skłonne do alergii przy stosowaniu kosmetyków działających powierz
 - ** przygotowanie pełnej prezentacji w Jupyter Notebook
 
 ### Poprawki kodu (extended 17.11.2026):
-** TopBeauty.py i Analiza.ipynb uruchamiają się i działają bez błedów
+** TopBeauty.py i Analiza.ipynb uruchamiają się i działają bez błędów
 ** formatowanie tabel przeniesione do jednej funkcji pokaz_tabele() w custom_styles.py 
 ** poprawione liczenie ceny za ml (cena i pojemność pochodzą z tego samego produktu) 
 ** wykres cruelty-free pokazuje teraz udział procentowy produktów cruelty-free w każdym kraju 
@@ -187,5 +187,5 @@ Notebook z kolorami: https://nbviewer.org/github/kamila-dudzinska/Top_Beauty/blo
 
 [![Kamila Dudzińska](https://img.shields.io/badge/Kamila%20Dudzińska-ff69b4?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
 [![Email](https://img.shields.io/badge/Email-555555?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge)](https://www.linkedin.com/flagship-web/in/kamila-dudzi%C5%84ska-856bb31b8/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge)](https://www.linkedin.com/in/kamila-dudzi%C5%84ska-856bb31b8/)
 
